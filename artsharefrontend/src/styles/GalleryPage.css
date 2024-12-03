@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.gallery-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.content {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+
+.painting-list {
+    flex: 1;
+    max-width: 300px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-right: 1px solid #dee2e6;
+}
+
+.painting-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.painting-item:hover {
+    background-color: #f1f1f1;
+}
+
+.painting-box {
+    width: 50px;
+    height: 50px;
+    
+    border-radius: 10px;
+}
+
+
+.painting-details {
+    flex: 3;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+.painting-display {
+    width: 300px;
+    /*height: 300px;*/
+    
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.stars {
+    font-size: 1.2rem;
+    color: #ffc107;
+}
+
+.comments-section {
+    margin-top: 1rem;
+    min-height: 150px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    width: 100%;
+    
+
+}
+
+.comments-section p {
+    margin: 0 0 5px;
+}
