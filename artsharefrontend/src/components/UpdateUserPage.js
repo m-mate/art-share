@@ -18,7 +18,7 @@ const UpdateUserPage = () => {
 
     if (!token) {
       alert("No token found. Please log in.");
-      window.location.href = "/login";
+      window.location.href = "/";
       return;
     }
 

@@ -23,7 +23,7 @@ const GalleryPage = () => {
     if (token) {
       const decodedToken = jwtDecode(token);
       setCurentUser(decodedToken);
-      console.log(decodedToken.sub);
+
       localStorage.setItem("username", decodedToken.sub);
     }
     return null;
@@ -189,7 +189,6 @@ const GalleryPage = () => {
           }
         )
         .then((response) => {
-          console.log("Rating updated:", response.data);
           handleSelectPainting(selectedPainting);
         })
         .catch((error) => {

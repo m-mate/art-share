@@ -45,7 +45,6 @@ const RegistrationPage = () => {
     setErrorMessage("");
 
     try {
-      console.log("passwd" + formData.password);
       const response = await axios.post(
         "http://localhost:8080/register",
         JSON.stringify({

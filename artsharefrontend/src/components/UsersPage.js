@@ -27,7 +27,6 @@ const UsersPage = () => {
 
   const handleMakeAdmin = async (userId) => {
     try {
-      console.log(userId);
       const token = localStorage.getItem("token");
       const response = await axios.put(
         `http://localhost:8080/users/role/${userId}`,
