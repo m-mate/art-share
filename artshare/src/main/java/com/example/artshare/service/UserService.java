@@ -71,10 +71,10 @@ public class UserService {
     public User updateRole(Long id) {
         User user = userRepository.findById(id).get();
         Role currentRole = user.getRole();
-        if(currentRole == Role.ADMIN) {
-            user.setRole(Role.USER);
+        if(currentRole == Role.ROLE_ADMIN) {
+            user.setRole(Role.ROLE_USER);
         }else {
-            user.setRole(Role.ADMIN);
+            user.setRole(Role.ROLE_ADMIN);
         }
         return userRepository.save(user);
     }
