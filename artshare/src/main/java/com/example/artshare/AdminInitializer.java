@@ -34,7 +34,7 @@ public class AdminInitializer implements CommandLineRunner {
             User admin = new User();
             admin.setUsername(adminUsername);
             admin.setPassword(encoder.encode(adminPassword));
-            admin.setRole(Role.ADMIN); // Set the role as admin
+            admin.setRole(Role.ROLE_ADMIN); // Set the role as admin
 
             userRepository.save(admin);
             System.out.println("Admin user created: " + adminUsername);

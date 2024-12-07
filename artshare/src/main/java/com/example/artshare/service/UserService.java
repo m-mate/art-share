@@ -4,7 +4,9 @@ import com.example.artshare.dto.UserDTO;
 import com.example.artshare.model.Role;
 import com.example.artshare.model.User;
 import com.example.artshare.repo.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -68,15 +70,25 @@ public class UserService {
 
     }
 
-    public User updateRole(Long id) {
-        User user = userRepository.findById(id).get();
+    @Transactional
+    public UserDTO updateRole(Long id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+
+
+
+
+        User user = optionalUser.get();
         Role currentRole = user.getRole();
-        if(currentRole == Role.ADMIN) {
-            user.setRole(Role.USER);
-        }else {
-            user.setRole(Role.ADMIN);
+
+        // Toggle the role between ADMIN and USER
+        if (currentRole == Role.ROLE_ADMIN) {
+            user.setRole(Role.ROLE_USER);
+        } else {
+            user.setRole(Role.ROLE_ADMIN);
         }
-        return userRepository.save(user);
+
+        User updatedUser = userRepository.save(user);
+        return new UserDTO(updatedUser.getId(),updatedUser.getUsername(),updatedUser.getEmail(),updatedUser.getFirstName(),updatedUser.getLastName(),updatedUser.getRole());
     }
 
     public List<UserDTO> getAllUsers() {

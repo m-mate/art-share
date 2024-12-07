@@ -39,6 +39,7 @@ const UsersPage = () => {
       );
 
       const updatedUser = response.data;
+
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
           user.id === updatedUser.id
@@ -54,7 +55,7 @@ const UsersPage = () => {
   const handleDeleteUser = async (userId) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:8080/users/${userId}`, {
+      await axios.delete(`http://localhost:8080/users/delete/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -88,7 +89,7 @@ const UsersPage = () => {
                       className="btn btn-primary btn-sm me-2 mb-3"
                       onClick={() => handleMakeAdmin(user.id)}
                     >
-                      {user.role === "ADMIN" ? "Make User" : "Make Admin"}
+                      {user.role === "ROLE_ADMIN" ? "Make User" : "Make Admin"}
                     </button>
                     <button
                       className="btn btn-danger btn-sm"

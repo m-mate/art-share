@@ -38,7 +38,7 @@ public class UserController {
         return new ResponseEntity<>(registeredUser,HttpStatus.CREATED);
     }
 
-    @DeleteMapping("users/{id}")
+    @DeleteMapping("users/delete/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -66,7 +66,7 @@ public class UserController {
     }
 
     @PutMapping("/users/role/{userId}")
-    public ResponseEntity<User> updateUserRole(@PathVariable Long userId) {
+    public ResponseEntity<UserDTO> updateUserRole(@PathVariable Long userId) {
 
         return new ResponseEntity<>(userService.updateRole(userId),HttpStatus.OK);
     }

@@ -10,7 +10,7 @@ const Navbar = () => {
   if (token) {
     try {
       const decodedToken = jwtDecode(token);
-      isAdmin = decodedToken.role === "ADMIN";
+      isAdmin = decodedToken.role === "ROLE_ADMIN";
     } catch (error) {
       console.error("Error decoding token:", error);
     }

@@ -2,21 +2,22 @@ package com.example.artshare.service;
 
 
 import com.example.artshare.model.Role;
+import com.example.artshare.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.cglib.core.internal.Function;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class JWTService {
@@ -72,6 +73,7 @@ public class JWTService {
                 .verifyWith(getKey())
                 .build()
                 .parseSignedClaims(token).getPayload();
+
     }
 
 
@@ -88,5 +90,19 @@ public class JWTService {
 
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
+    }
+
+    public Authentication getAuthentication(String token) {
+        String username = extractUserName(token);
+        Claims claims = extractAllClaims(token);
+
+        // Extract the role from JWT claims
+        String role = claims.get("role", String.class);
+        System.out.println(role);
+        // Convert role to authorities
+        Collection<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(role));
+        System.out.println( new UsernamePasswordAuthenticationToken(username, null, authorities));
+        // Return UsernamePasswordAuthenticationToken with no password (as we use JWT authentication)
+        return new UsernamePasswordAuthenticationToken(username, null, authorities);  // null for password
     }
 }

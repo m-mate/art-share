@@ -14,40 +14,35 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-
         <Route path="/register" element={<RegistrationPage />} />
 
         <Route
           path="/update-user"
-          element={<PrivateRoute element={UpdateUserPage} />}
+          element={
+            <PrivateRoute element={UpdateUserPage} requireAdmin={false} />
+          }
         />
         <Route
           path="/gallery"
-          element={<PrivateRoute element={GalleryPage} />}
+          element={<PrivateRoute element={GalleryPage} requireAdmin={false} />}
         />
-        <Route path="/users" element={<PrivateRoute element={UsersPage} />} />
         <Route
           path="/add-painting"
-          element={<PrivateRoute element={AddPaintingPage} />}
+          element={
+            <PrivateRoute element={AddPaintingPage} requireAdmin={false} />
+          }
         />
         <Route
           path="/edit-painting/:paintingId"
-          element={<PrivateRoute element={EditPaintingPage} />}
+          element={
+            <PrivateRoute element={EditPaintingPage} requireAdmin={false} />
+          }
         />
 
         <Route
-          path="/update-user/*"
-          element={<PrivateRoute element={UpdateUserPage} />}
+          path="/users"
+          element={<PrivateRoute element={UsersPage} requireAdmin={true} />}
         />
-        <Route
-          path="/gallery/*"
-          element={<PrivateRoute element={GalleryPage} />}
-        />
-        <Route
-          path="/add-painting/*"
-          element={<PrivateRoute element={AddPaintingPage} />}
-        />
-        <Route path="/*" element={<PrivateRoute />} />
       </Routes>
     </Router>
   );
